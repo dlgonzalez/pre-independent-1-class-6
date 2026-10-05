@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-Independent 1 | Unit 1 – Class 6</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet" />
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        h1, h2, h3, h4, h5, .font-poppins { font-family: 'Poppins', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .glass-panel { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08); }
+        .correct-highlight { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+        .wrong-highlight { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+        .sample-answer { background: #f0fdf4; border-left: 4px solid #22c55e; }
+        .toast { position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateY(20px); pointer-events: none; z-index: 1000; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast-success { background-color: #10b981; }
+        .toast-error { background-color: #ef4444; }
+        .toast-info { background-color: #3b82f6; }
+        .transition-box { background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-left: 4px solid #6366f1; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; }
+        .transition-box h4 { color: #3730a3; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .transition-box p { color: #334155; font-size: 0.9rem; line-height: 1.6; }
+        .instruction-box { background: #fff7ed; border-left: 4px solid #f97316; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; }
+        .instruction-box h4 { color: #9a3412; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .instruction-box ol, .instruction-box ul { color: #334155; font-size: 0.88rem; line-height: 1.7; padding-left: 20px; }
+        
+        /* Modals and Jeopardy */
+        .jeopardy-btn { transition: all 0.2s; }
+        .jeopardy-btn:hover:not(:disabled) { transform: scale(1.05); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .jeopardy-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.2s ease-out; }
+        
+        .timer-active { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        
+        .next-section-btn { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 1px solid #cbd5e1; }
+        .next-section-btn:hover { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="bg-slate-900 text-white shadow-2xl relative overflow-hidden border-b-4 border-amber-500">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-y-1/3 -translate-x-1/4"></div>
+        <div class="max-w-7xl mx-auto px-6 py-10 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-center gap-5">
+                    <div class="h-16 w-16 md:h-20 md:w-20 bg-white/95 rounded-xl p-2 shadow-lg flex items-center justify-center text-3xl">🧭</div>
+                    <div>
+                        <h1 class="text-3xl font-black font-poppins tracking-tight mb-2 flex items-center">
+                            <i class="fa-solid fa-microchip text-amber-400 mr-3 text-4xl"></i>
+                            Pre-Independent 1
+                        </h1>
+                        <p class="text-slate-300 text-lg font-medium tracking-wide uppercase">Unit 1: Incredible Lives <span class="text-indigo-400 mx-2">•</span> Class 6</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md border border-white/10 shadow-xl max-w-md">
+                    <h2 class="text-xl font-bold text-amber-400 mb-3 border-b border-white/20 pb-2">🎯 Today's Mission</h2>
+                    <ul class="text-sm text-slate-100 space-y-2">
+                        <li class="flex items-start"><i class="fa-solid fa-check-circle text-amber-400 mt-1 mr-2"></i> <strong>Review</strong> 20+ survival and character words.</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check-circle text-amber-400 mt-1 mr-2"></i> <strong>Share</strong> your written survival stories in groups.</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check-circle text-amber-400 mt-1 mr-2"></i> <strong>Analyze</strong> facts about extreme natural phenomena.</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check-circle text-amber-400 mt-1 mr-2"></i> <strong>Design</strong> an expert survival guide for emergencies.</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check-circle text-amber-400 mt-1 mr-2"></i> <strong>Compete</strong> in the Unit 1 Wrap-up Jeopardy Game.</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check-circle text-amber-400 mt-1 mr-2"></i> <strong>Complete</strong> the first OOPT preparation session.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex space-x-2 overflow-x-auto py-4 no-scrollbar" id="tab-container">
+                <button onclick="switchTab('tab0')" id="btn-tab0" class="px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-slate-800 text-white shadow-md whitespace-nowrap">0. ⚡ Vocab Speed Run</button>
+                <button onclick="switchTab('tab1')" id="btn-tab1" class="px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:bg-slate-100 whitespace-nowrap">1. 🏕️ Story Exchange</button>
+                <button onclick="switchTab('tab2')" id="btn-tab2" class="px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:bg-slate-100 whitespace-nowrap">2. 🛡️ The Survival Guide</button>
+                <button onclick="switchTab('tab3')" id="btn-tab3" class="px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:bg-slate-100 whitespace-nowrap">3. 🏆 Unit Jeopardy</button>
+                <button onclick="switchTab('tab4')" id="btn-tab4" class="px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:bg-slate-100 whitespace-nowrap">4. 📝 OOPT Session 1</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+        <!-- TAB 0: WARM-UP (Speed Run) -->
+        <section id="tab0" class="tab-content active fade-in">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="transition-box">
+                    <h4><i class="fa-solid fa-bolt"></i> Warm-Up: Vocabulary Speed Run</h4>
+                    <p><strong>Substitute Teacher Note:</strong> Have students play this game individually on their screens or project it and play as a class. It reviews all vocabulary from Unit 1 in a fast-paced challenge.</p>
+                </div>
+                
+                <div class="instruction-box">
+                    <h4><i class="fa-solid fa-gamepad"></i> How to Play</h4>
+                    <ol class="list-decimal">
+                        <li>Read the definition or sentence with the missing word.</li>
+                        <li>Click the correct vocabulary word as fast as you can.</li>
+                        <li>You have 20 rounds. Try to get a perfect score!</li>
+                    </ol>
+                </div>
+
+                <div class="bg-slate-900 rounded-3xl p-8 md:p-12 shadow-2xl max-w-3xl mx-auto border-4 border-slate-800 text-center relative overflow-hidden">
+                    <div class="flex justify-between text-slate-400 font-bold mb-8 text-sm border-b border-slate-700 pb-4">
+                        <span class="uppercase tracking-widest">Question: <span id="sr-count" class="text-white text-lg ml-2">1 / 20</span></span>
+                        <span class="uppercase tracking-widest">Score: <span id="sr-score" class="text-emerald-400 text-lg ml-2">0</span></span>
+                    </div>
+
+                    <div class="bg-slate-800 rounded-2xl p-8 shadow-inner min-h-[160px] flex items-center justify-center mb-8 border-2 border-slate-700">
+                        <h3 id="sr-question" class="text-2xl md:text-3xl font-poppins font-black text-white leading-snug">Click Start to test your survival vocabulary!</h3>
+                    </div>
+
+                    <div id="sr-controls" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button onclick="checkSpeedRun(0)" id="sr-opt0" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl shadow-md transition-all text-lg"></button>
+                        <button onclick="checkSpeedRun(1)" id="sr-opt1" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl shadow-md transition-all text-lg"></button>
+                        <button onclick="checkSpeedRun(2)" id="sr-opt2" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl shadow-md transition-all text-lg"></button>
+                    </div>
+
+                    <button onclick="startSpeedRun()" id="sr-start-btn" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-black py-4 px-12 rounded-full text-xl shadow-[0_6px_0_#b45309] active:translate-y-[6px] active:shadow-none transition-all mt-4">
+                        START CHALLENGE
+                    </button>
+                </div>
+                
+                <!-- Smooth Transition -->
+                <div class="mt-12 text-center p-6 next-section-btn rounded-2xl shadow-sm transition-colors cursor-pointer" onclick="switchTab('tab1')">
+                    <p class="text-slate-600 font-bold text-lg">Vocabulary activated? Let's share some incredible stories! 👉 <span class="text-indigo-600 font-black">Go to Story Exchange</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 1: STORY EXCHANGE -->
+        <section id="tab1" class="tab-content fade-in">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="transition-box">
+                    <h4><i class="fa-solid fa-book-open-reader"></i> The Storyteller's Circle</h4>
+                    <p>Last class, you wrote an amazing survival story (on Q10). Today, we turn that writing into a speaking and listening experience!</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Phase 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                        <h3 class="font-black text-indigo-900 text-xl mb-4 border-b border-slate-100 pb-2">Phase 1: Final Touches ✍️</h3>
+                        <p class="text-sm text-slate-600 mb-4"><strong>Did you finish your Q10 assignment?</strong></p>
+                        <ul class="space-y-3 text-sm text-slate-700 font-medium mb-6">
+                            <li class="flex items-start gap-2"><span class="text-emerald-500 text-lg">✅</span> <strong>If YES:</strong> Read through your story. Practice reading it aloud. Highlight the grammar verbs (<em>managed to, succeeded in, could</em>) you used.</li>
+                            <li class="flex items-start gap-2"><span class="text-rose-500 text-lg">⏳</span> <strong>If NO:</strong> You have 15 minutes right now to finish writing your story and submit it! Follow the structure from yesterday.</li>
+                        </ul>
+                        <div class="bg-slate-900 p-6 rounded-xl text-center shadow-inner">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Writing Timer</p>
+                            <p id="writing-timer-display" class="text-4xl font-mono font-black text-amber-400 mb-4">15:00</p>
+                            <button onclick="startTimer('writing-timer-display', 900)" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2 px-6 rounded-full text-sm shadow-sm transition">Start Writing Timer</button>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                        <h3 class="font-black text-indigo-900 text-xl mb-4 border-b border-slate-100 pb-2">Phase 2: The Exchange 🗣️</h3>
+                        <p class="text-sm text-slate-600 mb-4">Work in groups of 3. Take turns sharing your stories. Do not just read from your paper like a robot—<strong>tell the story with emotion!</strong></p>
+                        
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 mb-6">
+                            <p class="font-bold text-indigo-800 text-sm mb-2">Listeners, use these phrases to react:</p>
+                            <div class="grid grid-cols-2 gap-2 text-xs font-medium text-indigo-900">
+                                <div class="bg-white p-2 rounded shadow-sm">"That's incredible!"</div>
+                                <div class="bg-white p-2 rounded shadow-sm">"How did they manage to do that?"</div>
+                                <div class="bg-white p-2 rounded shadow-sm">"I would be terrified."</div>
+                                <div class="bg-white p-2 rounded shadow-sm">"What happened next?"</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 p-6 rounded-xl text-center shadow-inner">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Speaking Timer</p>
+                            <p id="speaking-timer-display" class="text-4xl font-mono font-black text-emerald-400 mb-4">15:00</p>
+                            <button onclick="startTimer('speaking-timer-display', 900)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-2 px-6 rounded-full text-sm shadow-sm transition">Start Speaking Timer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Spoken Story -->
+                <details class="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm">
+                    <summary class="font-bold text-indigo-700 cursor-pointer outline-none hover:text-indigo-800">👀 View Sample Spoken Presentation</summary>
+                    <div class="mt-4 p-4 bg-white border-l-4 border-indigo-400 rounded text-sm text-slate-700 leading-relaxed shadow-sm">
+                        "I want to tell you about Aron Ralston. He was hiking alone in a canyon when a giant rock fell and trapped his arm. He couldn't move, and he was completely alone in the desert. He was trapped for 5 days without food or water! Eventually, he realized nobody was coming. He <strong class="bg-amber-100 px-1">managed to</strong> break his own bone and cut off his arm to escape. It sounds horrible, but he <strong class="bg-amber-100 px-1">succeeded in</strong> surviving! I think he is the most resilient and brave person ever. If I were him, I wouldn't be <strong class="bg-amber-100 px-1">able to</strong> do it."
+                    </div>
+                </details>
+
+                <!-- Smooth Transition -->
+                <div class="mt-12 text-center p-6 next-section-btn rounded-2xl shadow-sm transition-colors cursor-pointer" onclick="switchTab('tab2')">
+                    <p class="text-slate-600 font-bold text-lg">Stories told? Now it's your turn to become the experts. 👉 <span class="text-indigo-600 font-black">Go to The Survival Guide</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: SURVIVAL GUIDE -->
+        <section id="tab2" class="tab-content fade-in">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="transition-box">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Expert Survival Guide</h4>
+                    <p>We've heard about incredible survival stories. But what if it happens to you? In this section, you will test your knowledge of extreme phenomena and design a survival guide for the class.</p>
+                </div>
+
+                <!-- Discussion & Quiz -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                    <!-- Personal Connection -->
+                    <div class="md:col-span-1 bg-amber-50 rounded-2xl p-6 border border-amber-200 shadow-sm">
+                        <h3 class="font-black text-amber-900 text-lg mb-4 flex items-center gap-2"><span class="text-2xl">💬</span> Let's Talk</h3>
+                        <p class="text-sm text-amber-800 mb-4 font-medium">Discuss with your group (5 mins):</p>
+                        <ul class="space-y-3 text-sm text-amber-900">
+                            <li>1. What is the most extreme or difficult weather condition you have ever experienced?</li>
+                            <li>2. Have you ever lost power or water for several days? What did you do?</li>
+                            <li>3. Do you think people today are prepared for natural disasters?</li>
+                        </ul>
+                    </div>
+
+                    <!-- Myth or Fact Quiz -->
+                    <div class="md:col-span-2 bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                        <h3 class="font-black text-indigo-900 text-xl mb-4 border-b border-slate-100 pb-2">Fact or Myth? 🧠</h3>
+                        <p class="text-sm text-slate-500 mb-4">Test your survival knowledge. Click the correct answer based on real expert advice.</p>
+                        
+                        <div class="space-y-4" id="myth-fact-quiz">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Project -->
+                <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl relative overflow-hidden border-4 border-emerald-500">
+                    <div class="absolute -right-10 -bottom-10 text-9xl opacity-10 pointer-events-none">🛡️</div>
+                    <div class="relative z-10 text-white">
+                        <div class="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4">
+                            <span class="bg-emerald-500 text-slate-900 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest">Group Project</span>
+                            <h3 class="text-2xl md:text-3xl font-poppins font-black text-emerald-400">Design The Ultimate Guide</h3>
+                        </div>
+                        
+                        <div class="instruction-box bg-slate-800 border-emerald-500 mb-8">
+                            <h4 class="text-emerald-400"><i class="fa-solid fa-users-gear"></i> Step-by-Step Instructions</h4>
+                            <ol class="list-decimal text-slate-200">
+                                <li>The teacher will assign your group an emergency: <strong>An Avalanche, A Forest Fire, A Sinking Ship, or An Earthquake.</strong></li>
+                                <li>You are the experts. You have 15 minutes to write a 4-step "Ultimate Survival Guide" for this emergency.</li>
+                                <li>You <strong>MUST</strong> use target grammar: <em>manage to, succeed in, able to, can/could</em>.</li>
+                                <li>Present your guide to the class. Be commanding and confident!</li>
+                            </ol>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                                <h4 class="font-bold text-amber-400 mb-3 text-sm uppercase tracking-wider">Required Structure</h4>
+                                <ul class="space-y-2 text-sm text-slate-300">
+                                    <li><strong>Step 1: Immediate Action.</strong> What is the very first thing you must do?</li>
+                                    <li><strong>Step 2: Protection.</strong> How do you stay safe from the immediate danger?</li>
+                                    <li><strong>Step 3: Resources.</strong> What essential items do you need?</li>
+                                    <li><strong>Step 4: Rescue.</strong> How do you manage to get help?</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                                <h4 class="font-bold text-indigo-400 mb-3 text-sm uppercase tracking-wider">Grammar Scaffolding</h4>
+                                <ul class="space-y-2 text-sm text-slate-300">
+                                    <li>"If you want to <strong>succeed in surviving</strong>, you must..."</li>
+                                    <li>"You have to <strong>manage to find</strong> a safe place."</li>
+                                    <li>"If you do this, you will be <strong>able to breathe</strong>."</li>
+                                    <li>"Make sure you <strong>can signal</strong> for help."</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smooth Transition -->
+                <div class="mt-12 text-center p-6 next-section-btn rounded-2xl shadow-sm transition-colors cursor-pointer" onclick="switchTab('tab3')">
+                    <p class="text-slate-600 font-bold text-lg">Ready for the ultimate test? 👉 <span class="text-indigo-600 font-black">Go to Unit Jeopardy</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: JEOPARDY -->
+        <section id="tab3" class="tab-content fade-in">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="transition-box">
+                    <h4><i class="fa-solid fa-trophy"></i> Unit 1 Wrap-Up: Jeopardy!</h4>
+                    <p><strong>Substitute Teacher Note:</strong> Divide the class into two teams. Ask a student to choose a category and a point value. Click the tile, read the question, and award points using the buttons in the pop-up!</p>
+                </div>
+
+                <!-- Scoreboard -->
+                <div class="flex justify-between items-center bg-slate-900 rounded-2xl p-6 shadow-xl mb-8 border-4 border-slate-800">
+                    <div class="text-center w-1/3">
+                        <h3 class="text-indigo-400 font-black text-xl md:text-2xl uppercase tracking-widest mb-2">Team 1</h3>
+                        <p id="team1-score" class="text-5xl font-mono font-black text-white">0</p>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <h3 class="text-slate-500 font-black text-3xl">VS</h3>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <h3 class="text-emerald-400 font-black text-xl md:text-2xl uppercase tracking-widest mb-2">Team 2</h3>
+                        <p id="team2-score" class="text-5xl font-mono font-black text-white">0</p>
+                    </div>
+                </div>
+
+                <!-- Jeopardy Board -->
+                <div class="bg-indigo-900 p-4 md:p-6 rounded-2xl shadow-2xl border-4 border-indigo-950">
+                    <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                        <!-- Headers -->
+                        <div class="bg-indigo-800 text-indigo-100 font-black uppercase tracking-wider text-xs md:text-sm py-3 rounded-lg shadow-inner">Noun Suffixes</div>
+                        <div class="bg-indigo-800 text-indigo-100 font-black uppercase tracking-wider text-xs md:text-sm py-3 rounded-lg shadow-inner">Vocabulary</div>
+                        <div class="bg-indigo-800 text-indigo-100 font-black uppercase tracking-wider text-xs md:text-sm py-3 rounded-lg shadow-inner">Grammar</div>
+                        <div class="bg-indigo-800 text-indigo-100 font-black uppercase tracking-wider text-xs md:text-sm py-3 rounded-lg shadow-inner">Wildcard</div>
+
+                        <!-- Rows injected via JS -->
+                    </div>
+                    <div id="jeopardy-grid" class="grid grid-cols-4 gap-2 md:gap-4 mt-2 md:mt-4">
+                        <!-- Buttons injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Smooth Transition -->
+                <div class="mt-12 text-center p-6 next-section-btn rounded-2xl shadow-sm transition-colors cursor-pointer" onclick="switchTab('tab4')">
+                    <p class="text-slate-600 font-bold text-lg">Great game! Let's wrap up with our final task. 👉 <span class="text-indigo-600 font-black">Go to OOPT Session 1</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: OOPT SESSION -->
+        <section id="tab4" class="tab-content fade-in">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="transition-box">
+                    <h4><i class="fa-solid fa-graduation-cap"></i> Final Task: OOPT Session 1</h4>
+                    <p>To finish the class, we are going to start our preparation for the Oxford Online Placement Test (OOPT). This test measures your listening and reading skills, as well as your knowledge of grammar and vocabulary.</p>
+                </div>
+
+                <div class="instruction-box mb-8">
+                    <h4><i class="fa-solid fa-desktop"></i> Instructions</h4>
+                    <ol class="list-decimal">
+                        <li>Click the link below to open your first OOPT practice session in a new tab.</li>
+                        <li>Complete the activities independently to test your current level.</li>
+                        <li>If you don't finish during class, you must complete it as homework!</li>
+                    </ol>
+                </div>
+
+                <div class="bg-slate-900 rounded-3xl p-10 shadow-2xl text-center border-4 border-indigo-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-9xl opacity-10 pointer-events-none">📝</div>
+                    <h3 class="text-3xl font-poppins font-black text-white mb-4">OOPT Preparation: Session 1</h3>
+                    <p class="text-slate-300 mb-8 max-w-xl mx-auto">This interactive lesson will guide you through the types of questions you will face on the real exam. Good luck!</p>
+                    
+                    <a href="https://dlgonzalez.github.io/pre-independent-1-oopt-session-1/" target="_blank" class="inline-block bg-indigo-500 hover:bg-indigo-400 text-white font-black py-4 px-10 rounded-full text-xl shadow-[0_6px_0_#3730a3] active:translate-y-[6px] active:shadow-none transition-all">
+                        START OOPT SESSION 1 <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Jeopardy Modal -->
+    <div id="jeopardy-modal" class="modal-overlay">
+        <div class="bg-slate-900 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-amber-500 w-full max-w-3xl mx-4 overflow-hidden flex flex-col">
+            <div class="p-8 text-center flex-grow flex flex-col justify-center min-h-[300px]">
+                <span id="jeopardy-cat" class="text-amber-500 font-bold uppercase tracking-widest text-sm mb-4 block">Category - Points</span>
+                <h2 id="jeopardy-q" class="text-3xl md:text-5xl font-poppins font-black text-white leading-tight mb-8">Question Text Goes Here</h2>
+                
+                <div id="jeopardy-a-container" class="hidden">
+                    <p class="text-emerald-400 font-bold uppercase tracking-widest text-sm mb-2">Answer:</p>
+                    <p id="jeopardy-a" class="text-2xl md:text-3xl font-bold text-emerald-300">Answer Text</p>
+                </div>
+                
+                <button id="show-answer-btn" onclick="showJeopardyAnswer()" class="mt-8 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-full shadow-md transition mx-auto block">Show Answer</button>
+            </div>
+            
+            <div id="jeopardy-controls" class="bg-slate-800 p-6 flex justify-between gap-4 hidden border-t border-slate-700">
+                <button onclick="awardJeopardy(1)" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl shadow-md transition text-lg">Team 1 Correct</button>
+                <button onclick="awardJeopardy(0)" class="flex-1 bg-slate-600 hover:bg-slate-500 text-white font-black py-4 rounded-xl shadow-md transition text-lg">Nobody / Skip</button>
+                <button onclick="awardJeopardy(2)" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 rounded-xl shadow-md transition text-lg">Team 2 Correct</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // --- Core Functions ---
+        function switchTab(tabId) {
+            try {
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                const tabs = ['tab0', 'tab1', 'tab2', 'tab3', 'tab4'];
+                tabs.forEach(id => {
+                    const btn = document.getElementById(`btn-${id}`);
+                    if (btn) btn.className = "px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:bg-slate-100 whitespace-nowrap";
+                });
+                const target = document.getElementById(tabId);
+                if (target) target.classList.add('active');
+                const activeBtn = document.getElementById(`btn-${tabId}`);
+                if (activeBtn) activeBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-slate-800 text-white shadow-md whitespace-nowrap";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (e) { console.log('switchTab error:', e); }
+        }
+
+        function showToast(msg, type = 'success') {
+            try {
+                const toast = document.getElementById('toast');
+                toast.textContent = msg;
+                toast.className = `toast toast-${type} show`;
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            } catch (e) { console.log(e); }
+        }
+
+        // --- Timers ---
+        let globalTimers = {};
+        function startTimer(displayId, seconds) {
+            if (globalTimers[displayId]) clearInterval(globalTimers[displayId]);
+            let t = seconds;
+            const el = document.getElementById(displayId);
+            el.classList.remove('text-rose-500');
+            el.classList.add('timer-active');
+            
+            globalTimers[displayId] = setInterval(() => {
+                t--;
+                const m = Math.floor(t / 60);
+                const s = t % 60;
+                el.textContent = `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+                
+                if (t <= 60) el.classList.add('text-rose-500');
+                if (t <= 0) {
+                    clearInterval(globalTimers[displayId]);
+                    el.textContent = "00:00";
+                    el.classList.remove('timer-active');
+                    showToast('⏰ Time is up!', 'info');
+                }
+            }, 1000);
+        }
+
+        // --- STREAMING_CHUNK:Initializing Tab 0 (Speed Run) ---
+        const speedRunData = [
+            { q: "Someone who never thinks about other people's feelings is...", opts: ["Generous", "Curious", "Selfish"], a: 2 },
+            { q: "An object used to reflect the sun and signal planes is a...", opts: ["Mirror", "Flashlight", "Map"], a: 0 },
+            { q: "If you have an illness of the body or mind, it's a...", opts: ["Disease", "Achievement", "Feature"], a: 0 },
+            { q: "Someone who is relaxed and never gets angry is...", opts: ["Brave", "Calm", "Panicked"], a: 1 },
+            { q: "A completely necessary item is...", opts: ["Artificial", "Impossible", "Essential"], a: 2 },
+            { q: "To make one thing become another is to...", opts: ["Turn into", "Attach", "Recreate"], a: 0 },
+            { q: "A storm with very strong winds usually in the ocean is a...", opts: ["Flood", "Hurricane", "Earthquake"], a: 1 },
+            { q: "Someone who won't disappoint you and does what they say is...", opts: ["Reliable", "Creative", "Nervous"], a: 0 },
+            { q: "To be successful, usually after hard work is to...", opts: ["Select", "Advance", "Achieve"], a: 2 },
+            { q: "Having artificial body parts, especially mechanical ones...", opts: ["Bionic", "Disabled", "Able-bodied"], a: 0 },
+            { q: "Someone who always wants to know more and asks questions is...", opts: ["Independent", "Curious", "Cautious"], a: 1 },
+            { q: "If a place or object can be easily used by all, it is...", opts: ["Accessible", "Artificial", "Suitable"], a: 0 },
+            { q: "Someone who is skilled at solving problems with few resources is...", opts: ["Resourceful", "Exhausted", "Tough"], a: 0 },
+            { q: "The tools or items needed for a particular purpose...", opts: ["Equipment", "Device", "Career"], a: 0 },
+            { q: "Someone who believes in their own abilities is...", opts: ["Optimistic", "Confident", "Frightened"], a: 1 },
+            { q: "To avoid risks is to be...", opts: ["Decisive", "Brave", "Cautious"], a: 2 },
+            { q: "A new discovery or invention is an...", opts: ["Advance", "Access", "Equipment"], a: 0 },
+            { q: "Able to quickly return to a good condition after a hard time...", opts: ["Tough", "Resilient", "Reliable"], a: 1 },
+            { q: "Someone who will happily give you money or time is...", opts: ["Creative", "Independent", "Generous"], a: 2 },
+            { q: "To choose something from a group is to...", opts: ["Select", "Attach", "Recognize"], a: 0 }
+        ];
+        
+        let srQueue = [];
+        let currentSrObj = null;
+        let srScore = 0;
+        let srRound = 0;
+
+        function startSpeedRun() {
+            srQueue = [...speedRunData].sort(() => Math.random() - 0.5); // shuffle
+            srScore = 0;
+            srRound = 1;
+            document.getElementById('sr-score').textContent = srScore;
+            document.getElementById('sr-start-btn').classList.add('hidden');
+            document.getElementById('sr-controls').classList.remove('hidden');
+            nextSpeedRun();
+        }
+
+        function nextSpeedRun() {
+            if (srQueue.length === 0) {
+                document.getElementById('sr-question').textContent = `🎉 Challenge Complete! Final Score: ${srScore}/20`;
+                document.getElementById('sr-controls').classList.add('hidden');
+                return;
+            }
+            document.getElementById('sr-count').textContent = `${srRound} / 20`;
+            currentSrObj = srQueue.pop();
+            document.getElementById('sr-question').textContent = currentSrObj.q;
+            
+            for(let i=0; i<3; i++) {
+                const btn = document.getElementById(`sr-opt${i}`);
+                btn.textContent = currentSrObj.opts[i];
+                btn.classList.remove('bg-emerald-500', 'bg-rose-500');
+                btn.classList.add('bg-indigo-600');
+                btn.disabled = false;
+            }
+        }
+
+        function checkSpeedRun(guessIdx) {
+            if (!currentSrObj) return;
+            
+            // disable buttons
+            for(let i=0; i<3; i++) document.getElementById(`sr-opt${i}`).disabled = true;
+
+            const btn = document.getElementById(`sr-opt${guessIdx}`);
+            const correctBtn = document.getElementById(`sr-opt${currentSrObj.a}`);
+            
+            if (guessIdx === currentSrObj.a) {
+                srScore++;
+                document.getElementById('sr-score').textContent = srScore;
+                btn.classList.replace('bg-indigo-600', 'bg-emerald-500');
+            } else {
+                btn.classList.replace('bg-indigo-600', 'bg-rose-500');
+                correctBtn.classList.replace('bg-indigo-600', 'bg-emerald-500');
+            }
+            
+            srRound++;
+            setTimeout(nextSpeedRun, 1000);
+        }
+
+        // --- STREAMING_CHUNK:Initializing Tab 2 (Fact or Myth Quiz) ---
+        const mythFactData = [
+            { q: "1. If you are caught in a rip current in the ocean, you should swim as hard as you can toward the shore.", o1: "Fact", o2: "Myth", a: 2, exp: "Myth! You will exhaust yourself. Swim parallel to the shore until you are out of the current." },
+            { q: "2. During an earthquake, you should stand in a doorway to stay safe.", o1: "Fact", o2: "Myth", a: 2, exp: "Myth! Modern doorways are not stronger. The best advice is to Drop, Cover (under a table), and Hold On." },
+            { q: "3. If a brown bear attacks you, you should play dead.", o1: "Fact", o2: "Myth", a: 1, exp: "Fact! For a grizzly/brown bear, play dead. (But for a black bear, fight back!)." },
+            { q: "4. You can survive longer without food than without water.", o1: "Fact", o2: "Myth", a: 1, exp: "Fact! You can survive weeks without food, but only a few days without water." }
+        ];
+
+        let mfAnswered = new Set();
+
+        function initMythFact() {
+            const container = document.getElementById('myth-fact-quiz');
+            mythFactData.forEach((item, i) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 p-4 rounded-xl border border-slate-200";
+                card.innerHTML = `
+                    <p class="font-medium text-slate-800 mb-3">${item.q}</p>
+                    <div class="flex gap-2" id="mf-btns-${i}">
+                        <button onclick="checkMF(${i}, 1)" class="flex-1 bg-white border border-slate-300 py-2 rounded font-bold text-sm text-slate-600 hover:bg-slate-100 transition">${item.o1}</button>
+                        <button onclick="checkMF(${i}, 2)" class="flex-1 bg-white border border-slate-300 py-2 rounded font-bold text-sm text-slate-600 hover:bg-slate-100 transition">${item.o2}</button>
+                    </div>
+                    <p id="mf-exp-${i}" class="text-sm font-semibold mt-2 hidden"></p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function checkMF(i, guess) {
+            if (mfAnswered.has(i)) return;
+            mfAnswered.add(i);
+            const item = mythFactData[i];
+            const btns = document.getElementById(`mf-btns-${i}`).querySelectorAll('button');
+            const exp = document.getElementById(`mf-exp-${i}`);
+            
+            exp.classList.remove('hidden');
+            exp.textContent = item.exp;
+
+            if (guess === item.a) {
+                btns[guess - 1].classList.add('correct-highlight');
+                exp.classList.add('text-emerald-600');
+            } else {
+                btns[guess - 1].classList.add('wrong-highlight');
+                btns[item.a - 1].classList.add('correct-highlight');
+                exp.classList.add('text-rose-600');
+            }
+        }
+
+        // --- STREAMING_CHUNK:Initializing Tab 3 (Jeopardy) ---
+        const jeopardyData = [
+            { cat: "Suffixes", qs: [
+                { v: 100, q: "Verb + ment: Develop...", a: "Development" },
+                { v: 200, q: "Adjective + ness: Happy...", a: "Happiness (Remember the 'i'!)" },
+                { v: 300, q: "Adjective + ity: Able...", a: "Ability" },
+                { v: 400, q: "Change 'confuse' into a noun.", a: "Confusion" },
+                { v: 500, q: "Change 'responsible' into a noun.", a: "Responsibility" }
+            ]},
+            { cat: "Vocabulary", qs: [
+                { v: 100, q: "Someone who is willing to do things that are dangerous.", a: "Brave" },
+                { v: 200, q: "Someone who cares only about themselves.", a: "Selfish" },
+                { v: 300, q: "An object used to reflect the sun and signal for help.", a: "Mirror" },
+                { v: 400, q: "The word for a completely necessary item.", a: "Essential" },
+                { v: 500, q: "The ability to quickly return to a good condition after a hard time.", a: "Resilient" }
+            ]},
+            { cat: "Grammar", qs: [
+                { v: 100, q: "Fill in the blank (Present general ability): 'I ____ speak three languages.'", a: "can / am able to" },
+                { v: 200, q: "Fill in the blank (Past general ability): 'Mozart ____ play the violin at age 5.'", a: "could" },
+                { v: 300, q: "Fix the sentence: 'We finally managed fix the car.'", a: "managed TO fix" },
+                { v: 400, q: "Fix the sentence: 'They succeeded in climb the mountain.'", a: "succeeded in CLIMBING" },
+                { v: 500, q: "What verb do we use for a specific difficult past achievement?", a: "Managed to / Was able to / Succeeded in (Do not use 'could'!)" }
+            ]},
+            { cat: "Wildcard", qs: [
+                { v: 100, q: "The opposite of a 'dynamic' verb.", a: "Stative verb" },
+                { v: 200, q: "Stative or Dynamic? 'I am thinking about pizza.'", a: "Dynamic (It is an active brain process right now)" },
+                { v: 300, q: "The desert gets very hot during the day, but at night it gets very...", a: "Cold / Freezing (Below 0°C)" },
+                { v: 400, q: "If you are in an avalanche, what is the first thing you must try to do?", a: "Create an air pocket around your face" },
+                { v: 500, q: "Correct the sentence: 'She is knowing the answer.'", a: "'She knows the answer.' (Know is stative, no -ing)" }
+            ]}
+        ];
+
+        let team1Score = 0;
+        let team2Score = 0;
+        let activeJeopardyQ = null;
+        let activeJeopardyBtn = null;
+
+        function initJeopardy() {
+            const grid = document.getElementById('jeopardy-grid');
+            grid.innerHTML = '';
+            
+            // 5 rows, 4 columns
+            for(let row=0; row<5; row++) {
+                for(let col=0; col<4; col++) {
+                    const cellData = jeopardyData[col].qs[row];
+                    const btn = document.createElement('button');
+                    btn.className = "jeopardy-btn bg-indigo-600 text-amber-400 font-black text-xl md:text-3xl py-4 md:py-6 rounded-lg shadow-[0_4px_0_#3730a3] border-2 border-indigo-500 flex items-center justify-center";
+                    btn.textContent = cellData.v;
+                    btn.onclick = () => openJeopardy(col, row, btn);
+                    grid.appendChild(btn);
+                }
+            }
+        }
+
+        function openJeopardy(col, row, btn) {
+            activeJeopardyQ = jeopardyData[col].qs[row];
+            activeJeopardyBtn = btn;
+            
+            document.getElementById('jeopardy-cat').textContent = `${jeopardyData[col].cat} - ${activeJeopardyQ.v} Points`;
+            document.getElementById('jeopardy-q').textContent = activeJeopardyQ.q;
+            document.getElementById('jeopardy-a').textContent = activeJeopardyQ.a;
+            
+            // Reset UI
+            document.getElementById('jeopardy-a-container').classList.add('hidden');
+            document.getElementById('show-answer-btn').classList.remove('hidden');
+            document.getElementById('jeopardy-controls').classList.add('hidden');
+            
+            document.getElementById('jeopardy-modal').classList.add('active');
+        }
+
+        function showJeopardyAnswer() {
+            document.getElementById('show-answer-btn').classList.add('hidden');
+            document.getElementById('jeopardy-a-container').classList.remove('hidden');
+            document.getElementById('jeopardy-controls').classList.remove('hidden');
+            document.getElementById('jeopardy-controls').classList.add('flex');
+        }
+
+        function awardJeopardy(team) {
+            if (!activeJeopardyQ) return;
+            const points = activeJeopardyQ.v;
+            
+            if (team === 1) {
+                team1Score += points;
+                document.getElementById('team1-score').textContent = team1Score;
+                showToast(`Team 1 gets ${points} points!`, 'success');
+            } else if (team === 2) {
+                team2Score += points;
+                document.getElementById('team2-score').textContent = team2Score;
+                showToast(`Team 2 gets ${points} points!`, 'success');
+            } else {
+                showToast('No points awarded.', 'info');
+            }
+            
+            // Disable button
+            activeJeopardyBtn.disabled = true;
+            activeJeopardyBtn.textContent = "";
+            activeJeopardyBtn.classList.replace('bg-indigo-600', 'bg-slate-800');
+            activeJeopardyBtn.classList.replace('border-indigo-500', 'border-slate-700');
+            activeJeopardyBtn.classList.replace('shadow-[0_4px_0_#3730a3]', 'shadow-none');
+            
+            document.getElementById('jeopardy-modal').classList.remove('active');
+        }
+
+        // --- Init ---
+        window.onload = function() {
+            try { initMythFact(); } catch (e) { console.log('MythFact error:', e); }
+            try { initJeopardy(); } catch (e) { console.log('Jeopardy error:', e); }
+            switchTab('tab0');
+        };
+    </script>
+</body>
+</html>
